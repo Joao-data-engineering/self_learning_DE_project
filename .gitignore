@@ -1,0 +1,17 @@
+# Ignore storage directory
+/storage/
+
+# Ignore plugins directory
+/plugins/
+
+# Ignore logs directory
+/logs/
+
+# Ignore dags directory
+/dags/
+
+# Ignore plugins directory inside airflow
+/airflow/plugins
+
+# Ignore logs directory inside airflow
+/airflow/logs
