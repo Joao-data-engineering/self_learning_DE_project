@@ -3,9 +3,9 @@ from typing import Optional
 from datetime import date
 
 class ActorActressKPIModel(BaseModel):
-    nconst: Optional[str] = None
-    role: Optional[str] = None
-    name: Optional[str] = None
+    nconst: str
+    role: str
+    name: str
     average_rating: Optional[float] = None
     total_run_time_minutes: Optional[int] = None
     total_titles_as_principal: Optional[int] = None

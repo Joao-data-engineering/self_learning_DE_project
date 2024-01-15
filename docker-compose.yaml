@@ -53,8 +53,8 @@ x-airflow-common:
   environment:
     &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: CeleryExecutor
-    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://pgbouncer:pgbouncer@pgbouncer:6432/airflow #postgresql+psycopg2://airflow:airflow@airflow_postgres/airflow postgresql+psycopg2://pgbouncer:pgbouncer@pgbouncer:6432/airflow
-    AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://airflow:airflow@pgbouncer:6432/airflow #db+postgresql://airflow:airflow@airflow_postgres/airflow
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow_postgres/airflow
+    AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://airflow:airflow@airflow_postgres/airflow
     AIRFLOW__CELERY__BROKER_URL: redis://:@airflow_redis:6379/0
     AIRFLOW__CORE__FERNET_KEY: ''
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
@@ -109,17 +109,6 @@ services:
     restart: always
     healthcheck:
       test: pg_isready -U admin -d imdb -h localhost -q
-
-  pgbouncer:
-    image: edoburu/pgbouncer:latest
-    environment:
-      - DB_HOST=imdb_postgres  # Use the name of your PostgreSQL service
-      - DB_PORT=5432
-      - DB_USER=admin
-      - DB_PASSWORD=password
-      - ADMIN_USERS=admin
-    ports:
-      - "6432:6432"
 
 #airflow
   airflow_postgres:
